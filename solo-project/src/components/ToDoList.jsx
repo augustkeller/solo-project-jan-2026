@@ -38,7 +38,7 @@ export default function ToDoList() {
                         onChange={handleChange}
                     />
                     {" "}
-                    {item}
+                    <span style={{color: checkedItems[item] ? "green" : "red"}}> {item}</span>
                     {checkedItems[item] && <span style={{color: checkedItems[item] ? "green" : "red"}}> COMPLETE!</span>}
                 </label>
             ))}
