@@ -2,26 +2,46 @@ import { useState } from "react";
 
 
 export default function ToDoList() {
-    const [isChecked, setIsChecked] = useState(false);
+        const items = [
+        "Fart",
+        "Butt",
+        "Sing",
+        "Fart Again",
+        "Watch Moobie",
+        "Cody",
+        "Practice",
+        "Gym",
+        "MTG",
+        "Relax",
+        "Pet Cats",
+    ];
 
-    function HandleChange(event) {
-        const checked = event.target.checked;
-        setIsChecked(checked);
+    const [checkedItems, setCheckedItems] = useState({});
+
+    function handleChange(event) {
+        const { value, checked } = event.target;
+
+        setCheckedItems(prev => ({
+            ...prev,
+            [value]: checked,
+        }));
     }
 
     return (
         <div className="category-selector">
-            <input type="checkbox" value="Fart" onChange={HandleChange} /> Fart {isChecked && <span>Time</span>} <br />
-            <input type="checkbox" value="Butt" onChange={HandleChange} /> Butt {isChecked && <span>Time</span>} <br />
-            <input type="checkbox" value="Sing" onChange={HandleChange} /> Sing {isChecked && <span>Time</span>} <br />
-            <input type="checkbox" value="Fart Again" onChange={HandleChange} /> Fart Again {isChecked && <span>Time</span>} <br />
-            <input type="checkbox" value="Watch Moobie" onChange={HandleChange} /> Watch Moobie {isChecked && <span>Time</span>} <br />
-            <input type="checkbox" value="Cody" onChange={HandleChange} /> Cody {isChecked && <span>Time</span>} <br />
-            <input type="checkbox" value="Practice" onChange={HandleChange} /> Practice {isChecked && <span>Time</span>} <br />
-            <input type="checkbox" value="Gym" onChange={HandleChange} /> Gym {isChecked && <span>Time</span>} <br />
-            <input type="checkbox" value="MTG" onChange={HandleChange} /> MTG {isChecked && <span>Time</span>} <br />
-            <input type="checkbox" value="Relax" onChange={HandleChange} /> Relax {isChecked && <span>Time</span>} <br />
-            <input type="checkbox" value="Pet Cats" onChange={HandleChange} /> Pet Cats {isChecked && <span>Time</span>} <br />
+            {items.map(item => (
+                <label key={item} style={{ display: "block" }}>
+                    <input
+                        type="checkbox"
+                        value={item}
+                        checked={!!checkedItems[item]}
+                        onChange={handleChange}
+                    />
+                    {" "}
+                    {item}
+                    {checkedItems[item] && <span> Time</span>}
+                </label>
+            ))}
         </div>
     );
 }
