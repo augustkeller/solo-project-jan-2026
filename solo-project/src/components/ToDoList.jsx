@@ -39,7 +39,7 @@ export default function ToDoList() {
                     />
                     {" "}
                     {item}
-                    {checkedItems[item] && <span> Time</span>}
+                    {checkedItems[item] && <span style={{color: checkedItems[item] ? "green" : "red"}}> COMPLETE!</span>}
                 </label>
             ))}
         </div>
