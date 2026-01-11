@@ -45,6 +45,7 @@ export default function ToDoList() {
 
     return (
         <form className="category-selector" onSubmit={handleSubmit}>
+            <h1>My To-Do List</h1>
 
             {items.map(item => (
                 <label key={item} style={{ display: "block" }}>
