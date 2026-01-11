@@ -27,8 +27,19 @@ export default function ToDoList() {
         }));
     }
 
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        const selectedItems = Object.keys(checkedItems).filter(
+            item => checkedItems[item]
+        );
+
+        console.log("Submitted items:", selectedItems);
+    }
+
     return (
-        <div className="category-selector">
+        <form className="category-selector" onSubmit={handleSubmit}>
+            
             {items.map(item => (
                 <label key={item} style={{ display: "block" }}>
                     <input
@@ -42,6 +53,18 @@ export default function ToDoList() {
                     {checkedItems[item] && <span style={{color: checkedItems[item] ? "green" : "red"}}> COMPLETE!</span>}
                 </label>
             ))}
-        </div>
+
+            <button
+                type="submit"
+                style={{
+                    marginTop: "12px",
+                    padding: "6px 12px",
+                    cursor: "pointer",
+                }}
+            >
+                Submit
+            </button>
+
+        </form>
     );
 }
