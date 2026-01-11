@@ -1,18 +1,19 @@
-import './App.css'
-import ToDoList from './components/ToDoList';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ToDoList from "./components/ToDoList";
+import Results from "./pages/Results";
+import Layout from "./Layout";
 
 function App() {
   return (
-    <>
-      <div>
-        <Header />
-        <ToDoList />
-        <Footer />
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<ToDoList />} />
+          <Route path="/results" element={<Results />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
-export default App
+export default App;
