@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export default function ToDoList() {
@@ -17,6 +18,7 @@ export default function ToDoList() {
     ];
 
     const [checkedItems, setCheckedItems] = useState({});
+    const navigate = useNavigate();
 
     function handleChange(event) {
         const { value, checked } = event.target;
@@ -34,12 +36,16 @@ export default function ToDoList() {
             item => checkedItems[item]
         );
 
+        navigate("/results", {
+            state: { completed: selectedItems }
+        });
+
         console.log("Submitted items:", selectedItems);
     }
 
     return (
         <form className="category-selector" onSubmit={handleSubmit}>
-            
+
             {items.map(item => (
                 <label key={item} style={{ display: "block" }}>
                     <input
